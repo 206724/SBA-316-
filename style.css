@@ -1,0 +1,77 @@
+body {
+    background: #f5f5f4;
+    color: #232323;
+    line-height: 30px;
+    font-size: 20px;
+    font-family: sans-serif;
+    padding: 25px 50px;
+    background-image:url("resort.jpg");
+    background-position: center;
+    background-size: auto;
+    
+    
+  }
+  
+  code {
+    color: #09507c;
+    background: #deedf2;
+    padding: 2px 10px;
+    border-radius: 10px;
+  }
+  h1{
+    text-align: center;
+     position:center;
+    display: inline-block;
+    
+   
+    
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* CSS Custom Properties */
+  :root {
+    --main-bg: #4a4e4d;
+    --top-menu-bg: #0e9aa7;
+    
+  }
+  
+  body {
+    font-family: Tahoma, Geneva, sans-serif;
+    height: 100vh;
+    margin: 0;
+    display: grid;
+    grid-template-rows: 3rem auto;
+    color: white;
+  }
+  
+  .flex-ctr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .flex-around {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  nav a {
+    line-height: 3rem;
+    padding: 0 1rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+  }
+  
+  #top-menu a:hover {
+    background-color: var(--sub-menu-bg);
+  }
+
+
+
+
+  

@@ -85,12 +85,14 @@ const lastMinBooking=discountSeason.nextElementSibling;
 //Use the parent-child-sibling 
 const tourstLocation=discountSeason.nextSibling;
 
-const paragraphs = document.getElementsByTagName('p')
 
-const para= document.getElementById("app")
-// console.log(para);
+//
+const para= document.getElementById("p1")
+console.log(para);
+para.innerHTML =" Please make your rservation NOW  "
 
-const app =document.getElementById("topic")
+// const app =document.getElementById("topic")
+// topic.innerHTML= " fdfddffdfdf"
 
 //  Creating a DocumentFragment
 function createPost(content){
@@ -123,7 +125,7 @@ return frag;
 //   })();
   
 ///form validation
-document.addEventListener("registration", () =>{
+document.addEventListener("app", () =>{
     const registrationForm =document.getElementById("registration");
     const loginForm =document.getElementById("login");
     const errorDisplay= document.getElementById("errorDisplay"); 
@@ -143,9 +145,9 @@ document.addEventListener("registration", () =>{
         if(password.length < 8 ){
             errors.push("Password must be 8 character long.")
         }
-        // if(password !== passwordCheck ){
-        //     errors.push("Password didnot match.")
-        // }
+        if(password !== passwordCheck ){
+            errors.push("Password didnot match.")
+        }
         if(! terms) {
             errors.push(" you must agree to the term of use.")
         }

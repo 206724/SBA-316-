@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Selecting DOM Elements</title>
+    <title>Form</title>
     <script defer src="./index.mjs"></script>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="./style.css">
@@ -16,32 +16,14 @@
     <div id="app">
       <h2>Well come to our Hotel</h2>
       <div>
+        <p id="p1">dont forget to make Register</p>
+
         why do we use it?
         It is a long established fact that a reader will be
          distracted by the readable content of a page when looking at its layout.
         The point of using Lorem Ipsum is that it has a more-or-less normal distribution 
         </dir>
-        <!-- <h3>Type of Hotel Room</h3> -->
-        <ul class ="Room-List"></ul>
-
-
-      <!-- </div>
-           
-      <br />
-
-      <label>
-        <input type="checkbox" name="selectBy" checked />
-        Select by ID </label
-      ><br />
-      <label>
-        <input type="checkbox" name="selectBy" checked />
-        Select by Name </label
-      ><br />
-      <label>
-        <input type="checkbox" name="selectBy" />
-        Select by Everything Else </label
-      ><br />
-    </div> -->
+       
     <dir>
       <h3> secrets to save money on your next stay.</h3>
     </dir>
@@ -64,15 +46,15 @@
         
                 <!-- Registration Form -->
                 <form id="registration">
-                  <input name="username" type="text" placeholder="Username" " />
+                  <input name="username" type="text" placeholder="Username" required />
                   <!-- pattern="*[0-9] -->
                   <span class="input-icon"><i class="fa-solid fa-user"></i></span><br />
         
-                  <input name="email" type="text" placeholder="Email" />
+                  <input name="email" type="text" placeholder="Email" required />
                   <span class="input-icon"><i class="fa-solid fa-envelope"></i></span
                   ><br />
         
-                  <input name="password" type="text" placeholder="Password" />
+                  <input name="password" type="text" placeholder="Password" required/>
                   <span class="input-icon"><i class="fa-solid fa-key"></i></span><br />
         
                   <input
@@ -100,10 +82,10 @@
         
                 <!-- Login Form -->
                 <form id="login" style="border-bottom: 1px solid lightgray;">
-                  <input name="username" type="text" placeholder="Username" />
+                  <input name="username" type="text" placeholder="Username" required/>
                   <span class="input-icon"><i class="fa-solid fa-user"></i></span><br />
         
-                  <input name="password" type="text" placeholder="Password" />
+                  <input name="password" type="text" placeholder="Password" required/>
                   <span class="input-icon"><i class="fa-solid fa-key"></i></span
                   ><br /><br />
         

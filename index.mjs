@@ -28,6 +28,12 @@ menu.forEach(menulinks =>{
 
 })
 
+topMenuEl.addEventListener(`click`, handleNavClick);
+function handleNavClick(e)
+{
+    e.preventDefault()
+}
+
 dynamicUI()
 function dynamicUI(){
 const divElemnet =document.createElement('div');
@@ -69,20 +75,108 @@ divElemnet.appendChild(btnContainer);
 
 document.body.appendChild(divElemnet);
 
-}//Use the parent-child-sibling relationship to navigate between elements at
+}
+//Use the parent-child-sibling relationship to navigate between elements at
 // least once (firstChild, lastChild, parentNode, nextElementSibling, etc.).
 
 const discountSeason = document.querySelector("#Discount > li:first-of-type")
 // console.log(discountSeason);
 const lastMinBooking=discountSeason.nextElementSibling;
-
+//Use the parent-child-sibling 
 const tourstLocation=discountSeason.nextSibling;
 
-// const paragraphs = document.getElementsByTagName('p')
+const paragraphs = document.getElementsByTagName('p')
 
+const para= document.getElementById("app")
+// console.log(para);
 
+const app =document.getElementById("topic")
 
+//  Creating a DocumentFragment
+function createPost(content){
+    
+ // Creating a DocumentFragment
+ const frag = document.createDocumentFragment();
+ const heading = frag.appendChild(document.createElement("h3"));
+//  heading.textContent = title;
+ heading.style.margin = "0px"
 
+frag.appendChild(document.createElement("hr"));
 
+const div = frag.appendChild(document.createElement("div"));
+div.style.padding = "0px 15px";
+div.style.marginBottom = "50px";
 
+div.appendChild(document.createElement("p")).innerHTML = content;
 
+return frag;
+}
+
+// Now, we can use the function to build consistent
+// post elements using custom data. We'll be pulling
+// from the JSON Placeholder API for convenience.
+// (async () => {
+ 
+//     posts.forEach((post) => {
+//       app.appendChild(createPost(post.title, post.body));
+//     });
+//   })();
+  
+///form validation
+document.addEventListener("registration", () =>{
+    const registrationForm =document.getElementById("registration");
+    const loginForm =document.getElementById("login");
+    const errorDisplay= document.getElementById("errorDisplay"); 
+
+    registrationForm.addEventListener("submit",(event) =>{
+        event.preventDefault();
+        const username = registrationForm.username.value.trim();
+        const email = registrationForm.email.value.trim();
+        const password = registrationForm.passwordCheck.value.trim();
+        const terms =registrationForm.terms.checked;
+             let errors=[];
+        if(!username.match(/.*[0-9]/))     {
+            errors.push("username must contain at least on number.");
+        if(!email.includes("@")||!email.include(".")){
+            errors.push("eamil must be valid .");
+        }    
+        if(password.length < 8 ){
+            errors.push("Password must be 8 character long.")
+        }
+        // if(password !== passwordCheck ){
+        //     errors.push("Password didnot match.")
+        // }
+        if(! terms) {
+            errors.push(" you must agree to the term of use.")
+        }
+        if(errors.length>0){
+            errorDisplay.innerHTML=errors.join("<br>");
+            }
+            else{
+                errorDisplay.innerHTML="Registration successful!";
+            }
+
+        }
+    })
+    
+loginForm.addEventListener("submit",(event) =>{
+    event.preventDefault();
+    const username = loginForm.username.value.trim();
+    const password = loginForm.password.value.trim();
+    let errors=[];
+    if(username === ""){
+        errors.push("Password is Required.")
+        
+    }
+    if(password === ""){
+        errors.push("password is required")
+    }
+    if(errors.length > 0){
+        errorDisplay.innerHTML = errors.join ("<br>")
+      }
+      else{
+        errorDisplay.innerHTML = "Login successful";
+      }
+})
+    
+})

@@ -114,58 +114,68 @@ div.appendChild(document.createElement("p")).innerHTML = content;
 return frag;
 }
 
-// Now, we can use the function to build consistent
-// post elements using custom data. We'll be pulling
-// from the JSON Placeholder API for convenience.
-// (async () => {
- 
-//     posts.forEach((post) => {
-//       app.appendChild(createPost(post.title, post.body));
-//     });
-//   })();
-  
-///form validation
-document.addEventListener("app", () =>{
-    const registrationForm =document.getElementById("registration");
-    const loginForm =document.getElementById("login");
-    const errorDisplay= document.getElementById("errorDisplay"); 
+// the following code is the form validation ,i was trring to 
 
-    registrationForm.addEventListener("submit",(event) =>{
+  
+document.addEventListener("DOMContentLoaded", () => {
+    
+const registrationForm = document.getElementById("registration");
+const loginForm =document.getElementById("login");
+
+    registrationForm.addEventListener("submit",(event) =>{        
         event.preventDefault();
+       
+      
+
         const username = registrationForm.username.value.trim();
         const email = registrationForm.email.value.trim();
-        const password = registrationForm.passwordCheck.value.trim();
-        const terms =registrationForm.terms.checked;
-             let errors=[];
-        if(!username.match(/.*[0-9]/))     {
-            errors.push("username must contain at least on number.");
-        if(!email.includes("@")||!email.include(".")){
-            errors.push("eamil must be valid .");
-        }    
-        if(password.length < 8 ){
-            errors.push("Password must be 8 character long.")
-        }
-        if(password !== passwordCheck ){
-            errors.push("Password didnot match.")
+        const password = registrationForm.password.value.trim();
+        const passwordCheck= registrationForm.passwordCheck.value.trim();
+        const terms =registrationForm.terms.checked;  
+        const errorDisplay= document.getElementById("errorDisplay"); 
+
+              
+   
+           
+       
+        if (!username.match(/^[a-z](?:[a-z]+\d*|\d{2,})$/i))     {
+          alert("username must contain one characters.");
+          registrationForm.reset();
+                 
+          }
+            
+        if (!email.includes("@") || ! email.includes(".")) {
+            alert ("Please enter a valid email address.");
+            registrationForm.reset();
+          }
+
+          if (!password.length< 8)  {
+            alert(   "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
+            );
+            registrationForm.reset();
+          }
+        if(password !== passwordCheck){
+            alert("Password didnot match.")
+            registrationForm.reset();
         }
         if(! terms) {
-            errors.push(" you must agree to the term of use.")
+           errors.push(" you must agree to the term of use.")
+          
         }
         if(errors.length>0){
-            errorDisplay.innerHTML=errors.join("<br>");
-            }
-            else{
-                errorDisplay.innerHTML="Registration successful!";
-            }
-
+            errorDisplay.innerHTML = errors.join("<br>")
         }
-    })
-    
-loginForm.addEventListener("submit",(event) =>{
+        else{
+            errorDisplay.innerHTML = "Registration successful!"
+        }
+    }) 
+     
+    loginForm.addEventListener("submit",(event) =>{
     event.preventDefault();
     const username = loginForm.username.value.trim();
     const password = loginForm.password.value.trim();
     let errors=[];
+
     if(username === ""){
         errors.push("Password is Required.")
         
@@ -180,5 +190,51 @@ loginForm.addEventListener("submit",(event) =>{
         errorDisplay.innerHTML = "Login successful";
       }
 })
-    
+
 })
+
+
+
+
+const registrationForm = document.getElementById("registrationForm");
+const errorMessages = document.getElementById("errorMessages");
+
+registrationForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const { username, email, password } = registrationForm.elements;
+
+  errorMessages.innerHTML = "";
+
+  if (!username.value.trim()) {
+    displayError("Username is required.");
+    return;
+  }
+
+  if (!email.value.trim() || !isValidEmail(email.value)) {
+    displayError("Please enter a valid email address.");
+    return;
+  }
+
+  if (!password.value.trim() || !isStrongPassword(password.value)) {
+    displayError(
+      "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
+    );
+    return;
+  }
+
+  alert("Registration successful!");
+  registrationForm.reset();
+});
+
+function displayError(message) {
+  errorMessages.innerHTML += `<div class="error">${message}</div>`;
+}
+
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isStrongPassword(password) {
+  return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/.test(password);
+}

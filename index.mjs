@@ -34,7 +34,7 @@ function handleNavClick(e)
     e.preventDefault()
 }
 
-//creating login form using DOM
+dynamicUI()
 function dynamicUI(){
 const divElemnet =document.createElement('div');
 divElemnet.setAttribute('id','divElementID');

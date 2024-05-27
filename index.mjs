@@ -34,7 +34,7 @@ function handleNavClick(e)
     e.preventDefault()
 }
 
-dynamicUI()
+//creating login form using DOM
 function dynamicUI(){
 const divElemnet =document.createElement('div');
 divElemnet.setAttribute('id','divElementID');
@@ -114,84 +114,67 @@ div.appendChild(document.createElement("p")).innerHTML = content;
 return frag;
 }
 
-// the following code is the form validation ,i was trring to 
 
-  
-document.addEventListener("DOMContentLoaded", () => {
-    
-const registrationForm = document.getElementById("registration");
-const loginForm =document.getElementById("login");
-
-    registrationForm.addEventListener("submit",(event) =>{        
-        event.preventDefault();
-       
-      
-
-        const username = registrationForm.username.value.trim();
-        const email = registrationForm.email.value.trim();
-        const password = registrationForm.password.value.trim();
-        const passwordCheck= registrationForm.passwordCheck.value.trim();
-        const terms =registrationForm.terms.checked;  
-        const errorDisplay= document.getElementById("errorDisplay"); 
-
-              
-   
            
        
-        if (!username.match(/^[a-z](?:[a-z]+\d*|\d{2,})$/i))     {
-          alert("username must contain one characters.");
-          registrationForm.reset();
-                 
-          }
-            
-        if (!email.includes("@") || ! email.includes(".")) {
-            alert ("Please enter a valid email address.");
-            registrationForm.reset();
-          }
 
-          if (!password.length< 8)  {
-            alert(   "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
-            );
-            registrationForm.reset();
-          }
-        if(password !== passwordCheck){
-            alert("Password didnot match.")
-            registrationForm.reset();
-        }
-        if(! terms) {
-           errors.push(" you must agree to the term of use.")
-          
-        }
-        if(errors.length>0){
-            errorDisplay.innerHTML = errors.join("<br>")
-        }
-        else{
-            errorDisplay.innerHTML = "Registration successful!"
-        }
-    }) 
-     
-    loginForm.addEventListener("submit",(event) =>{
-    event.preventDefault();
-    const username = loginForm.username.value.trim();
-    const password = loginForm.password.value.trim();
-    let errors=[];
+//Dom event-based validataion ,with event handlling function 
+const login = document.getElementById("login");
+const errorMessages = document.getElementById("errorMessages");
 
-    if(username === ""){
-        errors.push("Password is Required.")
-        
-    }
-    if(password === ""){
-        errors.push("password is required")
-    }
-    if(errors.length > 0){
-        errorDisplay.innerHTML = errors.join ("<br>")
-      }
-      else{
-        errorDisplay.innerHTML = "Login successful";
-      }
-})
+login.addEventListener("submit", function (event) {
+  event.preventDefault();
 
-})
+  const { username, email, password } = login.elements;
+
+  errorMessages.innerHTML = "";
+
+  if (!username.value.trim()) {
+    displayError("User Name is required.");
+    return;
+  }
+
+  if (!email.value.trim() || !isValidEmail(email.value)) {
+    displayError("Please Enter a valid Email Address.");
+    return;
+  }
+
+  if (!password.value.trim() || !isStrongPassword(password.value)) {
+    displayError(
+      "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
+    );
+    return;
+  }
+
+  alert("Registration successful!");
+  login.reset();
+});
+
+function displayError(message) {
+  errorMessages.innerHTML += `<div class="error">${message}</div>`;
+}
+
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isStrongPassword(password) {
+  return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/.test(password);
+}
+  
 
 
 
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 

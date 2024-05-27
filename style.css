@@ -86,8 +86,10 @@ body {
 }
 .username-container
 {
-  width: 97%;
+  width: 87%;
   margin-bottom: 10px;
+  
+  
   
 }
 ul{
@@ -186,8 +188,8 @@ a {
   color: #0097a7;
   text-decoration: none;
 }
-
-#errorDisplay {
+ 
+#displayError {
   position: absolute;
   background: #fcc;
   color: red;
@@ -200,4 +202,11 @@ a {
   user-select: none;
   padding: 20px;
   display: none;
+} 
+#errorMessages{
+  color: #296de3;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.25);
+  background-color: #accacbd3;
+
+
 }
